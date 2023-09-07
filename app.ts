@@ -2,6 +2,8 @@ const num1Element = document.getElementById("num1") as HTMLInputElement;
 const num2Element = document.getElementById("num2") as HTMLInputElement;
 const buttonElement = document.querySelector("button")!;
 
+const dataArray: number[] = [];
+
 function add(a: number | string, b: number | string) {
   if (typeof a === "number" && typeof b === "number") {
     return a + b;
@@ -10,9 +12,14 @@ function add(a: number | string, b: number | string) {
   }
 }
 
+function PrintResult(resultObj: { val: number; date: Date }) {
+  console.log(resultObj);
+}
 buttonElement.addEventListener("click", () => {
-  const num1 = num1Element.value;
-  const num2 = num1Element.value;
-  var ans = add(num1, num2);
-  console.log(ans);
+  const a = num1Element.value;
+  const b = num1Element.value;
+  var ans = add(+a, +b);
+  dataArray.push(ans as number);
+  console.log(">>>>>>>>>>>>>>>", dataArray);
+  PrintResult({ val: ans as number, date: new Date() });
 });
